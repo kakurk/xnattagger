@@ -5,4 +5,4 @@ scans is a necessary precursor to running the [`anatqc`](https://github.com/harv
 
 # Usage
 
-xnat_tagger.py --alias <xnat alias> --target <modality (t1, t2, dwi, all)> session <MRsession label>
+xnat_tagger.py --alias 'xnat alias' --target 'modality (t1, t2, dwi, all)' session 'MRsession label'
