@@ -1,9 +1,8 @@
 # XNAT Tagger (beta)
-AnatQC is an automated quality control pipeline for T1-weighted (with or 
-without volumetric navigators) MRI scans. AnatQC is built on top of the 
-excellent [`dcm2niix`](https://github.com/rordenlab/dcm2niix), 
-[`FreeSurfer`](https://surfer.nmr.mgh.harvard.edu/), 
-[`vNav`](https://github.com/mharms/parse_vNav_Motion), 
-and [`MRIQC`](https://mriqc.readthedocs.io/en/stable/) packages.
+xnattagger is a command line tool that adds tags to the note field of MR Session scans on XNAT. Tagging the 
+scans is a necessary precursor to running the [`anatqc`](https://github.com/harvard-nrg/anatqc), t2qc and dwiqc pipelines.
 
-For the latest documentation please head over to [anatqc.readthedocs.io](https://anatqc.readthedocs.io).
+
+# Usage
+
+xnat_tagger.py --alias <xnat alias> --target <modality (t1, t2, dwi, all)> session <MRsession label>
