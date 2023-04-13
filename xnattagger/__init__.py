@@ -10,8 +10,8 @@ from yaxil.exceptions import NoExperimentsError
 logger = logging.getLogger()
 
 class Tagger:
-    def __init__(self, alias, filters, target, session, project=None, cache=None):
-        self.auth = yaxil.auth(alias)
+    def __init__(self, auth, filters, target, session, project=None, cache=None):
+        self.auth = auth
         self.filters = filters
         self.project = project
         self.cache = cache
