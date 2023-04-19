@@ -25,3 +25,12 @@ dwi_AP:
       image_type: [ORIGINAL, PRIMARY, DIFFUSION, NONE, ND]
     - series_description: UKbioDiff_ABCDseq_DistMap_AP
       image_type: [ORIGINAL, PRIMARY, DIFFUSION, NONE, ND]
+bold:
+    - series_description: ABCD_fMRI_rest_noPMU
+      image_type: [ORIGINAL, PRIMARY, M, ND, MOSAIC]
+bold_PA:
+    - series_description: ABCD_fMRI_DistortionMap_PA
+      image_type: [ORIGINAL, PRIMARY, M, ND]
+bold_AP:
+    - series_description: ABCD_fMRI_DistortionMap_AP
+      image_type: [ORIGINAL, PRIMARY, M, ND]
