@@ -36,7 +36,13 @@ class Tagger:
             self.updates.update({
                 't2w': self.t2w(self.scans),  # Generate updates for T2w scan(s)
                 't2w_move': self.t2w_move(self.scans)  # Generate updates for T2w_MOVE scan(s)
-            })  
+            })
+        elif self.target == 'bold':
+            self.updates.update({
+                'bold': self.bold(self.scans),
+                'bold_PA': self.bold_PA(self.scans),
+                'bold_AP': self.bold_AP(self.scans)
+                })
         elif self.target == 'all':
             self.updates.update({
                 't1w': self.t1w(self.scans),  # Generate updates for T1w scan(s)
@@ -210,6 +216,63 @@ class Tagger:
                 'tag': tag
                 })
         return updates
+
+    def bold(self, scans):
+        updates = list()
+        scans = self.filter('bold')
+        for i, scan in enumerate(scans, start=1):
+            sid = scan['id']
+            session = scan['session_label']
+            series = scan['series_description'].strip()
+            note = scan['note'].strip()
+            tag = f'#BOLD_{i:03}'
+            updates.append({
+                'project': scan['session_project'],
+                'subject': scan['subject_label'],
+                'session': session, 
+                'scan': sid,
+                'series_description': series,
+                'note': note,
+                'tag': tag
+                })
+
+    def bold_PA(self, scans):
+        updates = list()
+        scans = self.filter('bold_PA')
+        for i, scan in enumerate(scans, start=1):
+            sid = scan['id']
+            session = scan['session_label']
+            series = scan['series_description'].strip()
+            note = scan['note'].strip()
+            tag = f'#BOLD_PA_{i:03}'
+            updates.append({
+                'project': scan['session_project'],
+                'subject': scan['subject_label'],
+                'session': session, 
+                'scan': sid,
+                'series_description': series,
+                'note': note,
+                'tag': tag
+                })
+
+    def bold_AP(self, scans):
+        updates = list()
+        scans = self.filter('bold_AP')
+        for i, scan in enumerate(scans, start=1):
+            sid = scan['id']
+            session = scan['session_label']
+            series = scan['series_description'].strip()
+            note = scan['note'].strip()
+            tag = f'#BOLD_AP_{i:03}'
+            updates.append({
+                'project': scan['session_project'],
+                'subject': scan['subject_label'],
+                'session': session, 
+                'scan': sid,
+                'series_description': series,
+                'note': note,
+                'tag': tag
+                })
 
     def upsert(self, confirm=True):
         updates = list(self._squeeze(self.updates))
