@@ -344,4 +344,4 @@ class Tagger:
                 self.scans = json.loads(fo.read())
 
 class BadArgumentError(Exception):
-    pass
+    pass(yaxil)
