@@ -51,7 +51,10 @@ class Tagger:
                 't2w_move': self.t2w_move(self.scans),  # Generate updates for T2w_MOVE scan(s)
                 'dwi': self.dwi(self.scans), # Generate updates for main DWI scan(s)
                 'dwi_PA': self.dwi_PA(self.scans), # Generate updates for PA fieldmap(s)
-                'dwi_AP': self.dwi_AP(self.scans) # Generate updates for AP fieldmap(s)
+                'dwi_AP': self.dwi_AP(self.scans), # Generate updates for AP fieldmap(s)
+                'bold': self.bold(self.scans),
+                'bold_PA': self.bold_PA(self.scans),
+                'bold_AP': self.bold_AP(self.scans)
             })
 
     def apply_updates(self):
