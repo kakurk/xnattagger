@@ -37,7 +37,7 @@ def main():
     parser.add_argument('--confirm', action='store_true',
         help='Prompt user to confirm every update')  # Provide help text for confirm argument
     parser.add_argument('--filters', required=True,
-        help='Filters configuration output_file') 
+        help='Filters configuration file') 
     parser.add_argument('--target', choices=['t1', 't2', 'dwi', 'bold', 'all'], required=True, type=str.lower) # Require --target argument
     parser.add_argument('session')  # Require session argument
     args = parser.parse_args()

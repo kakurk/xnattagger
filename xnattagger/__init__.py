@@ -235,6 +235,7 @@ class Tagger:
                 'note': note,
                 'tag': tag
                 })
+        return updates
 
     def bold_PA(self, scans):
         updates = list()
@@ -254,6 +255,7 @@ class Tagger:
                 'note': note,
                 'tag': tag
                 })
+        return updates
 
     def bold_AP(self, scans):
         updates = list()
@@ -273,6 +275,7 @@ class Tagger:
                 'note': note,
                 'tag': tag
                 })
+        return updates
 
     def upsert(self, confirm=True):
         updates = list(self._squeeze(self.updates))
@@ -344,4 +347,4 @@ class Tagger:
                 self.scans = json.loads(fo.read())
 
 class BadArgumentError(Exception):
-    pass(yaxil)
+    pass
