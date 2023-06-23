@@ -48,7 +48,7 @@ def main():
     with open(args.filters) as fo:
         filters = yaml.load(fo, Loader=yaml.SafeLoader)
 
-    tagger = Tagger(args.alias, filters, args.target, args.label)
+    tagger = Tagger(args.xnat-alias, filters, args.target, args.label)
     tagger.generate_updates()
 
     if args.output_file:
