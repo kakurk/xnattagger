@@ -39,7 +39,7 @@ def main():
         help='Prompt user to confirm every update')  # Provide help text for confirm argument
     parser.add_argument('--filters', default=config.default(),
         help='Filters configuration file') 
-    parser.add_argument('--target', choices=['t1', 't2', 'dwi', 'bold', 'all'], required=True, type=str.lower) # Require --target argument
+    parser.add_argument('--target', choices=['t1', 't2', 'dwi', 'bold', 'all'], nargs="+" ,required=True, type=str.lower) # Require --target argument
     parser.add_argument('--label', required=True,
         help='Label of XNAT MR Session')  # Require label argument
     args = parser.parse_args()
