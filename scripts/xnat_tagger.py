@@ -41,13 +41,13 @@ def main():
         help='Filters configuration file') 
     parser.add_argument('--target', choices=['t1', 't2', 'dwi', 'bold', 'all'], required=True, type=str.lower) # Require --target argument
     parser.add_argument('--label', required=True,
-        help='Label of XNAT MR Session')  # Require session argument
+        help='Label of XNAT MR Session')  # Require label argument
     args = parser.parse_args()
 
     with open(args.filters) as fo:
         filters = yaml.load(fo, Loader=yaml.SafeLoader)
 
-    tagger = Tagger(args.alias, filters, args.target, args.session)
+    tagger = Tagger(args.alias, filters, args.target, args.label)
     tagger.generate_updates()
 
     if args.output_file:
