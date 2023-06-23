@@ -25,7 +25,7 @@ yaml.add_representer(collections.defaultdict, Representer.represent_dict)
 def main():
     # Parse command line arguments
     parser = ap.ArgumentParser()
-    parser.add_argument('-a', '--alias', default='ssbc',
+    parser.add_argument('-a', '--alias', required=True,
         help='XNAT alias')  # Set default value and provide help text for alias argument
     parser.add_argument('--project',
         help='XNAT project')  # Provide help text for project argument
