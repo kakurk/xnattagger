@@ -26,7 +26,7 @@ yaml.add_representer(collections.defaultdict, Representer.represent_dict)
 def main():
     # Parse command line arguments
     parser = ap.ArgumentParser()
-    parser.add_argument('--xnat-alias', required=True,
+    parser.add_argument('-a', '--alias', required=True,
         help='XNAT alias')  # Set default value and provide help text for alias argument
     parser.add_argument('--project',
         help='XNAT project')  # Provide help text for project argument
@@ -48,7 +48,7 @@ def main():
     with open(args.filters) as fo:
         filters = yaml.load(fo, Loader=yaml.SafeLoader)
 
-    tagger = Tagger(args.xnat-alias, filters, args.target, args.label)
+    tagger = Tagger(args.alias, filters, args.target, args.label)
     tagger.generate_updates()
 
     if args.output_file:
