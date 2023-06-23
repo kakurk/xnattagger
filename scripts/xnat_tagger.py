@@ -15,6 +15,7 @@ from io import StringIO
 from yaml.representer import Representer
 from yaxil.exceptions import NoExperimentsError
 from xnattagger import Tagger
+import xnattagger.config as config 
 
 logger = logging.getLogger(os.path.basename(__file__))
 logging.basicConfig(level=logging.INFO)
@@ -36,10 +37,11 @@ def main():
         help='Do not execute updates')  # Provide help text for dry-run argument
     parser.add_argument('--confirm', action='store_true',
         help='Prompt user to confirm every update')  # Provide help text for confirm argument
-    parser.add_argument('--filters', required=True,
+    parser.add_argument('--filters', default=config.default(), required=True,
         help='Filters configuration file') 
     parser.add_argument('--target', choices=['t1', 't2', 'dwi', 'bold', 'all'], required=True, type=str.lower) # Require --target argument
-    parser.add_argument('session')  # Require session argument
+    parser.add_argument('--label', required=True,
+        help='Label of XNAT MR Session')  # Require session argument
     args = parser.parse_args()
 
     with open(args.filters) as fo:

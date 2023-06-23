@@ -1,0 +1,36 @@
+t1w:
+    - series_description: ABCD_T1w_MPR_vNav
+      image_type: [ORIGINAL, PRIMARY, M, ND, NORM]
+t1w_move:
+    - series_description: ABCD_T1w_MPR_vNav_setter
+      image_type: [ORIGINAL, PRIMARY, M, ND, MOSAIC]
+t2w:
+    - series_description: ABCD_T2w_SPC_vNav
+      image_type: [ORIGINAL, PRIMARY, M, ND, NORM]
+t2w_move:
+    - series_description: ABCD_T2w_SPC_vNav_setter
+      image_type: [ORIGINAL, PRIMARY, M, ND, MOSAIC]
+dwi:
+    - series_description: ABCD_dMRI_lowSR
+      image_type: [ORIGINAL, PRIMARY, DIFFUSION, NONE, ND, MOSAIC]
+    - series_description: UKbioDiff_ABCDseq_ABCDdvs
+      image_type: [ORIGINAL, PRIMARY, DIFFUSION, NONE, ND, MOSAIC]
+dwi_PA:
+    - series_description: ABCD_dMRI_DistortionMap_PA
+      image_type: [ORIGINAL, PRIMARY, DIFFUSION, NONE, ND]
+    - series_description: UKbioDiff_ABCDseq_DistMap_PA
+      image_type: [ORIGINAL, PRIMARY, DIFFUSION, NONE, ND]
+dwi_AP:
+    - series_description: ABCD_dMRI_DistortionMap_AP
+      image_type: [ORIGINAL, PRIMARY, DIFFUSION, NONE, ND]
+    - series_description: UKbioDiff_ABCDseq_DistMap_AP
+      image_type: [ORIGINAL, PRIMARY, DIFFUSION, NONE, ND]
+bold:
+    - series_description: ABCD_fMRI_rest_noPMU
+      image_type: [ORIGINAL, PRIMARY, M, ND, MOSAIC]
+bold_PA:
+    - series_description: ABCD_fMRI_DistortionMap_PA
+      image_type: [ORIGINAL, PRIMARY, M, ND]
+bold_AP:
+    - series_description: ABCD_fMRI_DistortionMap_AP
+      image_type: [ORIGINAL, PRIMARY, M, ND]
