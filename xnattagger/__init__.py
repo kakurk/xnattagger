@@ -62,7 +62,6 @@ class Tagger:
 
     def filter(self, modality):
         matches = []
-        print(modality)
         filt = self.filters[modality]
         for scan in self.scans:
             if isinstance(scan['image_type'], str):
