@@ -62,6 +62,7 @@ class Tagger:
 
     def filter(self, modality):
         matches = []
+        print(modality)
         filt = self.filters[modality]
         for scan in self.scans:
             if isinstance(scan['image_type'], str):
@@ -280,7 +281,7 @@ class Tagger:
                 })
         return updates
 
-    def upsert(self, confirm=True):
+    def upsert(self, confirm=False):
         updates = list(self._squeeze(self.updates))
         for scan in self.scans:
             sid = scan['id']
@@ -298,7 +299,7 @@ class Tagger:
                 if note:
                     upsert = f'{tag} {note}'
                 logger.info(f'setting note for scan {sid} to "{upsert}"')
-                self.setnote(scan, text=upsert, confirm=True)
+                self.setnote(scan, text=upsert, confirm=False)
             else:
                 logger.info(f"'{tag}' already in note '{note}'")
 
@@ -351,3 +352,4 @@ class Tagger:
 
 class BadArgumentError(Exception):
     pass
+
