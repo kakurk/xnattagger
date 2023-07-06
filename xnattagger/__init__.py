@@ -64,7 +64,6 @@ class Tagger:
         matches = []
         filt = self.filters[modality]
         for scan in self.scans:
-            print(json.dumps(scan, indent=2))
             image_type = scan.get('image_type', None)
             if isinstance(image_type, str):
                 scan['image_type'] = re.split('\\\+', scan['image_type'])
