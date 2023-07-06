@@ -64,12 +64,14 @@ class Tagger:
         matches = []
         filt = self.filters[modality]
         for scan in self.scans:
-            if isinstance(scan['image_type'], str):
+            print(json.dumps(scan, indent=2))
+            image_type = scan.get('image_type', None)
+            if isinstance(image_type, str):
                 scan['image_type'] = re.split('\\\+', scan['image_type'])
             for f in filt:
                 match = True
                 for key,value in iter(f.items()):
-                    if scan[key] != value:
+                    if key in scan and scan[key] != value:
                         match = False
                 if match:
                     matches.append(scan)
@@ -351,4 +353,3 @@ class Tagger:
 
 class BadArgumentError(Exception):
     pass
-
