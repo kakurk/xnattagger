@@ -48,7 +48,7 @@ def main():
     with open(args.config) as fo:
         configs = yaml.load(fo, Loader=yaml.SafeLoader)
 
-    tagger = Tagger(args.alias, configs, args.target, args.label)
+    tagger = Tagger(args.alias, configs, args.target_modality, args.label)
     tagger.generate_updates()
 
     if args.output_file:
