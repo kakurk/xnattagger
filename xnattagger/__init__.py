@@ -74,7 +74,7 @@ class Tagger:
                         match = False
                 if match:
                     matches.append(scan)
-        tag = self.config[modality]['tag']
+        tag = self.config[modality][0]['tag']
         print(tag)
         sys.exit()
         return matches
