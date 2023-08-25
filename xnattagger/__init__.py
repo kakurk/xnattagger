@@ -75,19 +75,18 @@ class Tagger:
                 if match:
                     matches.append(scan)
         tag = self.config[modality][0]['tag']
-        print(tag)
-        sys.exit()
-        return matches
+        return matches, tag
 
     def t1w(self, scans):
         updates = list()
-        scans = self.filter('t1w')
+        scans, tag = self.filter('t1w')
         for i, scan in enumerate(scans, start=1):
             sid = scan['id']
             session = scan['session_label']
             series = scan['series_description'].strip()
             note = scan['note'].strip()
-            tag = f'#T1w_{i:03}'
+            #tag = f'#T1w_{i:03}'
+            tag = f'{tag}_{i:03}'
             updates.append({
                 'project': scan['session_project'],
                 'subject': scan['subject_label'],
@@ -101,13 +100,14 @@ class Tagger:
 
     def t1w_move(self, scans):
         updates = list()
-        scans = self.filter('t1w_move')
+        scans, tag = self.filter('t1w_move')
         for i,scan in enumerate(scans, start=1):
             sid = scan['id']
             session = scan['session_label']
             series = scan['series_description'].strip()
             note = scan['note'].strip()
-            tag = f'#T1w_MOVE_{i:03}'
+            #tag = f'#T1w_MOVE_{i:03}'
+            tag = f'{tag}_{i:03}'
             updates.append({
                 'project': scan['session_project'],
                 'subject': scan['subject_label'],
@@ -122,13 +122,14 @@ class Tagger:
 
     def t2w(self, scans):
         updates = list()
-        scans = self.filter('t2w')
+        scans, tag = self.filter('t2w')
         for i,scan in enumerate(scans, start=1):
             sid = scan['id']
             session = scan['session_label']
             series = scan['series_description'].strip()
             note = scan['note'].strip()
-            tag = f'#T2w_{i:03}'
+            #tag = f'#T2w_{i:03}'
+            tag = f'{tag}_{i:03}'
             updates.append({
                 'project': scan['session_project'],
                 'subject': scan['subject_label'],
@@ -143,13 +144,14 @@ class Tagger:
 
     def t2w_move(self, scans):
         updates = list()
-        scans = self.filter('t2w_move')
+        scans, tag = self.filter('t2w_move')
         for i,scan in enumerate(scans, start=1):
             sid = scan['id']
             session = scan['session_label']
             series = scan['series_description'].strip()
             note = scan['note'].strip()
-            tag = f'#T2w_MOVE_{i:03}'
+            #tag = f'#T2w_MOVE_{i:03}'
+            tag = f'{tag}_{i:03}'
             updates.append({
                 'project': scan['session_project'],
                 'subject': scan['subject_label'],
@@ -164,13 +166,14 @@ class Tagger:
 
     def dwi(self, scans):
         updates = list()
-        scans = self.filter('dwi')
+        scans, tag = self.filter('dwi')
         for i, scan in enumerate(scans, start=1):
             sid = scan['id']
             session = scan['session_label']
             series = scan['series_description'].strip()
             note = scan['note'].strip()
-            tag = f'#DWI_MAIN_{i:03}'
+            #tag = f'#DWI_MAIN_{i:03}'
+            tag = f'{tag}_{i:03}'
             updates.append({
                 'project': scan['session_project'],
                 'subject': scan['subject_label'],
@@ -185,13 +188,14 @@ class Tagger:
 
     def dwi_PA(self, scans):
         updates = list()
-        scans = self.filter('dwi_PA')
+        scans, tag = self.filter('dwi_PA')
         for i, scan in enumerate(scans, start=1):
             sid = scan['id']
             session = scan['session_label']
             series = scan['series_description'].strip()
             note = scan['note'].strip()
-            tag = f'#DWI_FMAP_PA_{i:03}'
+            #tag = f'#DWI_FMAP_PA_{i:03}'
+            tag = f'{tag}_{i:03}'
             updates.append({
                 'project': scan['session_project'],
                 'subject': scan['subject_label'],
@@ -206,13 +210,14 @@ class Tagger:
 
     def dwi_AP(self, scans):
         updates = list()
-        scans = self.filter('dwi_AP')
+        scans, tag = self.filter('dwi_AP')
         for i, scan in enumerate(scans, start=1):
             sid = scan['id']
             session = scan['session_label']
             series = scan['series_description'].strip()
             note = scan['note'].strip()
-            tag = f'#DWI_FMAP_AP_{i:03}'
+            #tag = f'#DWI_FMAP_AP_{i:03}'
+            tag = f'{tag}_{i:03}'
             updates.append({
                 'project': scan['session_project'],
                 'subject': scan['subject_label'],
@@ -226,13 +231,14 @@ class Tagger:
 
     def bold(self, scans):
         updates = list()
-        scans = self.filter('bold')
+        scans, tag = self.filter('bold')
         for i, scan in enumerate(scans, start=1):
             sid = scan['id']
             session = scan['session_label']
             series = scan['series_description'].strip()
             note = scan['note'].strip()
-            tag = f'#BOLD_{i:03}'
+            #tag = f'#BOLD_{i:03}'
+            tag = f'{tag}_{i:03}'
             updates.append({
                 'project': scan['session_project'],
                 'subject': scan['subject_label'],
@@ -246,13 +252,14 @@ class Tagger:
 
     def bold_PA(self, scans):
         updates = list()
-        scans = self.filter('bold_PA')
+        scans, tag = self.filter('bold_PA')
         for i, scan in enumerate(scans, start=1):
             sid = scan['id']
             session = scan['session_label']
             series = scan['series_description'].strip()
             note = scan['note'].strip()
-            tag = f'#BOLD_PA_{i:03}'
+            #tag = f'#BOLD_PA_{i:03}'
+            tag = f'{tag}_{i:03}'
             updates.append({
                 'project': scan['session_project'],
                 'subject': scan['subject_label'],
@@ -266,13 +273,14 @@ class Tagger:
 
     def bold_AP(self, scans):
         updates = list()
-        scans = self.filter('bold_AP')
+        scans, tag = self.filter('bold_AP')
         for i, scan in enumerate(scans, start=1):
             sid = scan['id']
             session = scan['session_label']
             series = scan['series_description'].strip()
             note = scan['note'].strip()
-            tag = f'#BOLD_AP_{i:03}'
+            #tag = f'#BOLD_AP_{i:03}'
+            tag = f'{tag}_{i:03}'
             updates.append({
                 'project': scan['session_project'],
                 'subject': scan['subject_label'],
