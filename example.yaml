@@ -17,24 +17,24 @@ t2w_move:
 dwi:
     - series_description: ABCD_dMRI_lowSR
       image_type: [ORIGINAL, PRIMARY, DIFFUSION, NONE, ND, MOSAIC]
-      tag: '#DWI'
+      tag: '#DWI_MAIN'
     - series_description: UKbioDiff_ABCDseq_ABCDdvs
       image_type: [ORIGINAL, PRIMARY, DIFFUSION, NONE, ND, MOSAIC]
-      tag: '#DWI'
+      tag: '#DWI_MAIN'
 dwi_PA:
     - series_description: ABCD_dMRI_DistortionMap_PA
       image_type: [ORIGINAL, PRIMARY, DIFFUSION, NONE, ND]
-      tag: '#DWI_PA'
+      tag: '#DWI_FMAP_PA'
     - series_description: UKbioDiff_ABCDseq_DistMap_PA
       image_type: [ORIGINAL, PRIMARY, DIFFUSION, NONE, ND]
-      tag: '#DWI_PA'
+      tag: '#DWI_FMAP_PA'
 dwi_AP:
     - series_description: ABCD_dMRI_DistortionMap_AP
       image_type: [ORIGINAL, PRIMARY, DIFFUSION, NONE, ND]
-      tag: '#DWI_AP'
+      tag: '#DWI_FMAP_AP'
     - series_description: UKbioDiff_ABCDseq_DistMap_AP
       image_type: [ORIGINAL, PRIMARY, DIFFUSION, NONE, ND]
-      tag: '#DWI_AP'
+      tag: '#DWI_FMAP_AP'
 bold:
     - series_description: ABCD_fMRI_rest_noPMU
       image_type: [ORIGINAL, PRIMARY, M, ND, MOSAIC]
@@ -42,8 +42,8 @@ bold:
 bold_PA:
     - series_description: ABCD_fMRI_DistortionMap_PA
       image_type: [ORIGINAL, PRIMARY, M, ND]
-      tag: '#BOLD_PA'
+      tag: '#BOLD_FMAP_PA'
 bold_AP:
     - series_description: ABCD_fMRI_DistortionMap_AP
       image_type: [ORIGINAL, PRIMARY, M, ND]
-      tag: '#BOLD_AP'
+      tag: '#BOLD_FMAP_AP'
