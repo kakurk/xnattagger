@@ -69,17 +69,20 @@ class Tagger:
                 scan['image_type'] = re.split('\\\+', scan['image_type'])
             for f in filt:
                 match = True
-                for key,value in iter(f.items()):
+                for key, value in iter(f.items()):
                     if key in scan and scan[key] != value:
                         match = False
                 if match:
                     matches.append(scan)
+        tag = self.config[modality]['tag']
+        print(tag)
+        sys.exit()
         return matches
 
     def t1w(self, scans):
         updates = list()
         scans = self.filter('t1w')
-        for i,scan in enumerate(scans, start=1):
+        for i, scan in enumerate(scans, start=1):
             sid = scan['id']
             session = scan['session_label']
             series = scan['series_description'].strip()
