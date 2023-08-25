@@ -38,7 +38,7 @@ def main():
         help='Do not execute updates')  # Provide help text for dry-run argument
     parser.add_argument('--confirm', action='store_true',
         help='Prompt user to confirm every update')  # Provide help text for confirm argument
-    parser.add_argument('--config', required=True, default=config.default(),
+    parser.add_argument('--config', required=True,
         help='Filters configuration file') 
     parser.add_argument('--target-modality', choices=['t1', 't2', 'dwi', 'bold', 'all'], required=True, type=str.lower) # Require --target argument
     parser.add_argument('--label', required=True,
