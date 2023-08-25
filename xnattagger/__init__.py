@@ -10,9 +10,9 @@ from yaxil.exceptions import NoExperimentsError
 logger = logging.getLogger()
 
 class Tagger:
-    def __init__(self, alias, filters, target, session, project=None, cache=None):
+    def __init__(self, alias, config, target, session, project=None, cache=None):
         self.auth = yaxil.auth(alias)
-        self.filters = filters
+        self.config = config
         self.project = project
         self.cache = cache
         self.target = target 
@@ -62,7 +62,7 @@ class Tagger:
 
     def filter(self, modality):
         matches = []
-        filt = self.filters[modality]
+        filt = self.config[modality]
         for scan in self.scans:
             image_type = scan.get('image_type', None)
             if isinstance(image_type, str):
