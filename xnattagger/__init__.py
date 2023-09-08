@@ -25,7 +25,8 @@ class Tagger:
             self.updates.update({
                 'dwi': self.dwi(self.scans), # Generate updates for main DWI scan(s)
                 'dwi_PA': self.dwi_PA(self.scans), # Generate updates for PA fieldmap(s)
-                'dwi_AP': self.dwi_AP(self.scans) # Generate updates for AP fieldmap(s)
+                'dwi_AP': self.dwi_AP(self.scans), # Generate updates for AP fieldmap(s)
+                'revpol': self.revpol(self.scans) # Generate updates for revpol scans
             })
         elif self.target == 't1':
             self.updates.update({
@@ -62,6 +63,7 @@ class Tagger:
 
     def filter(self, modality):
         matches = []
+        tags = []
         filt = self.config[modality]
         for scan in self.scans:
             image_type = scan.get('image_type', None)
@@ -74,8 +76,8 @@ class Tagger:
                         match = False
                 if match:
                     matches.append(scan)
-        tag = self.config[modality][0]['tag']
-        return matches, tag
+                    tags.append(f['tag'])
+        return matches, tags
 
     def t1w(self, scans):
         updates = list()
@@ -166,14 +168,21 @@ class Tagger:
 
     def dwi(self, scans):
         updates = list()
-        scans, tag = self.filter('dwi')
+        scans, tags = self.filter('dwi')
+        tag_counter = 0
         for i, scan in enumerate(scans, start=1):
             sid = scan['id']
             session = scan['session_label']
             series = scan['series_description'].strip()
             note = scan['note'].strip()
             #tag = f'#DWI_MAIN_{i:03}'
-            tag = f'{tag}_{i:03}'
+            tag_prefix = tags[tag_counter]
+            match = re.search(r'\d+$', tag_prefix) ### check if the tag ends in digits. If it does don't mess with it
+            if not match:
+                tag = tag_prefix + f'_{i:03}'
+            else:
+                tag = tag_prefix
+            tag_counter += 1
             updates.append({
                 'project': scan['session_project'],
                 'subject': scan['subject_label'],
@@ -185,6 +194,32 @@ class Tagger:
                 })
         return updates
 
+    def revpol(self, scans):
+        updates = list()
+        scans, tags = self.filter('revpol')
+        tag_counter = 0
+        for i, scan in enumerate(scans, start=1):
+            sid = scan['id']
+            session = scan['session_label']
+            series = scan['series_description'].strip()
+            note = scan['note'].strip()
+            tag_prefix = tags[tag_counter]
+            match = re.search(r'\d+$', tag_prefix) ### check if the tag ends in digits. If it does then don't mess with it
+            if not match:
+                tag = tag_prefix + f'_{i:03}'
+            else:
+                tag = tag_prefix
+            tag_counter += 1
+            updates.append({
+                'project': scan['session_project'],
+                'subject': scan['subject_label'],
+                'session': session, 
+                'scan': sid,
+                'series_description': series,
+                'note': note,
+                'tag': tag
+                })
+        return updates
 
     def dwi_PA(self, scans):
         updates = list()
@@ -362,4 +397,7 @@ class Tagger:
                 self.scans = json.loads(fo.read())
 
 class BadArgumentError(Exception):
+    pass
+
+class UpsertError(Exception):
     pass
