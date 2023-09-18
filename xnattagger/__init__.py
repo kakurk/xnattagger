@@ -82,7 +82,7 @@ class Tagger:
 
     def t1w(self, scans):
         updates = list()
-        scans, tag = self.filter('t1w')
+        scans, tags = self.filter('t1w')
         tag_counter = 0
         for i, scan in enumerate(scans, start=1):
             sid = scan['id']
