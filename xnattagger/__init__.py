@@ -65,7 +65,11 @@ class Tagger:
     def filter(self, modality):
         matches = []
         tags = []
-        filt = self.config[modality]
+        try:
+            filt = self.config[modality]
+        except KeyError:
+            logger.warning(f'{modality} not found in config file. continuing.')
+            return None
         for scan in self.scans:
             image_type = scan.get('image_type', None)
             if isinstance(image_type, str):
@@ -83,6 +87,8 @@ class Tagger:
     def t1w(self, scans):
         updates = list()
         scans, tags = self.filter('t1w')
+        if not scans:
+            return None
         tag_counter = 0
         for i, scan in enumerate(scans, start=1):
             sid = scan['id']
@@ -111,6 +117,8 @@ class Tagger:
     def t1w_move(self, scans):
         updates = list()
         scans, tag = self.filter('t1w_move')
+        if not scans:
+            return None        
         for i,scan in enumerate(scans, start=1):
             sid = scan['id']
             session = scan['session_label']
@@ -133,6 +141,8 @@ class Tagger:
     def t2w(self, scans):
         updates = list()
         scans, tag = self.filter('t2w')
+        if not scans:
+            return None    
         for i,scan in enumerate(scans, start=1):
             sid = scan['id']
             session = scan['session_label']
@@ -155,6 +165,8 @@ class Tagger:
     def t2w_move(self, scans):
         updates = list()
         scans, tag = self.filter('t2w_move')
+        if not scans:
+            return None
         for i,scan in enumerate(scans, start=1):
             sid = scan['id']
             session = scan['session_label']
@@ -177,6 +189,8 @@ class Tagger:
     def dwi(self, scans):
         updates = list()
         scans, tags = self.filter('dwi')
+        if not scans:
+            return None
         tag_counter = 0
         for i, scan in enumerate(scans, start=1):
             sid = scan['id']
@@ -205,6 +219,8 @@ class Tagger:
     def revpol(self, scans):
         updates = list()
         scans, tags = self.filter('revpol')
+        if not scans:
+            return None
         tag_counter = 0
         for i, scan in enumerate(scans, start=1):
             sid = scan['id']
@@ -232,6 +248,8 @@ class Tagger:
     def dwi_PA(self, scans):
         updates = list()
         scans, tag = self.filter('dwi_PA')
+        if not scans:
+            return None
         for i, scan in enumerate(scans, start=1):
             sid = scan['id']
             session = scan['session_label']
@@ -254,6 +272,8 @@ class Tagger:
     def dwi_AP(self, scans):
         updates = list()
         scans, tag = self.filter('dwi_AP')
+        if not scans:
+            return None
         for i, scan in enumerate(scans, start=1):
             sid = scan['id']
             session = scan['session_label']
@@ -275,6 +295,8 @@ class Tagger:
     def bold(self, scans):
         updates = list()
         scans, tag = self.filter('bold')
+        if not scans:
+            return None
         for i, scan in enumerate(scans, start=1):
             sid = scan['id']
             session = scan['session_label']
@@ -296,6 +318,8 @@ class Tagger:
     def bold_PA(self, scans):
         updates = list()
         scans, tag = self.filter('bold_PA')
+        if not scans:
+            return None
         for i, scan in enumerate(scans, start=1):
             sid = scan['id']
             session = scan['session_label']
@@ -317,6 +341,8 @@ class Tagger:
     def bold_AP(self, scans):
         updates = list()
         scans, tag = self.filter('bold_AP')
+        if not scans:
+            return None
         for i, scan in enumerate(scans, start=1):
             sid = scan['id']
             session = scan['session_label']
@@ -337,6 +363,8 @@ class Tagger:
 
     def upsert(self, confirm=False):
         updates = list(self._squeeze(self.updates))
+        if not updates:
+            return
         for scan in self.scans:
             sid = scan['id']
             note = scan['note']
