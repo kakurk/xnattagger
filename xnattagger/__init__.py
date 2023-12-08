@@ -5,6 +5,7 @@ import json
 import yaxil
 import logging
 import requests
+from pprint import pprint
 from yaxil.exceptions import NoExperimentsError
 
 logger = logging.getLogger()
@@ -59,8 +60,19 @@ class Tagger:
                 'revpol': self.revpol(self.scans) # Generate updates for revpol scans
             })
 
-            
+        print('old dictionary')
         print(self.updates)
+
+        # filter out None values
+
+        filtered = {k: v for k, v in self.updates.items() if v is not None}
+        self.updates.clear()
+        self.updates.update(filtered)
+
+        print('new dictionary:')
+        pprint(self.updates)
+
+
         sys.exit()
 
 
