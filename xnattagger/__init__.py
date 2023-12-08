@@ -60,21 +60,11 @@ class Tagger:
                 'revpol': self.revpol(self.scans) # Generate updates for revpol scans
             })
 
-        print('old dictionary')
-        pprint(self.updates)
-
         # filter out None values
 
-        filtered = {k: v for k, v in self.updates.items() if v is not None}
+        filtered = {key: value for key, value in self.updates.items() if value is not None}
         self.updates.clear()
         self.updates.update(filtered)
-
-        print('new dictionary:')
-        pprint(self.updates)
-
-
-        sys.exit()
-
 
     def apply_updates(self):
         self.upsert()
