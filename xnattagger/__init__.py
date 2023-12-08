@@ -59,6 +59,11 @@ class Tagger:
                 'revpol': self.revpol(self.scans) # Generate updates for revpol scans
             })
 
+            
+        print(self.updates)
+        sys.exit()
+
+
     def apply_updates(self):
         self.upsert()
 
