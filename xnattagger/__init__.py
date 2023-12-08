@@ -389,7 +389,7 @@ class Tagger:
     def _squeeze(self, updates):
         for _,items in iter(updates.items()):
             if not items:
-                return
+                return None
             for item in items:
                 yield item
 
