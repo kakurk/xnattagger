@@ -61,7 +61,7 @@ class Tagger:
             })
 
         print('old dictionary')
-        print(self.updates)
+        pprint(self.updates)
 
         # filter out None values
 
