@@ -301,8 +301,6 @@ class Tagger:
             else:
                 tag = tag_prefix
             tag_counter += 1
-            #tag = f'#DWI_FMAP_AP_{i:03}'
-            tag = f'{tag}_{i:03}'
             updates.append({
                 'project': scan['session_project'],
                 'subject': scan['subject_label'],
