@@ -76,7 +76,7 @@ class Tagger:
             filt = self.config[modality]
         except KeyError:
             logger.warning(f'{modality} not found in config file. continuing.')
-            return None
+            return None, None
         for scan in self.scans:
             image_type = scan.get('image_type', None)
             if isinstance(image_type, str):
