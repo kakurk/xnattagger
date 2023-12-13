@@ -263,7 +263,7 @@ class Tagger:
             session = scan['session_label']
             series = scan['series_description'].strip()
             note = scan['note'].strip()
-            tag_prefix = tags[tag_counter]
+            tag_prefix = tag[tag_counter]
             match = re.search(r'\d+$', tag_prefix)
             #tag = f'#DWI_FMAP_PA_{i:03}'
             if not match:
