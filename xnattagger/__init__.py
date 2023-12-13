@@ -280,6 +280,8 @@ class Tagger:
                 'note': note,
                 'tag': tag
                 })
+        print(updates)
+        sys.exit()
         return updates
 
 
