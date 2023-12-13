@@ -288,11 +288,19 @@ class Tagger:
         scans, tag = self.filter('dwi_AP')
         if not scans:
             return None
+        tag_counter = 0
         for i, scan in enumerate(scans, start=1):
             sid = scan['id']
             session = scan['session_label']
             series = scan['series_description'].strip()
             note = scan['note'].strip()
+            tag_prefix = tag[tag_counter]
+            match = re.search(r'\d+$', tag_prefix)
+            if not match:
+                tag = tag_prefix + f'_{i:03}'
+            else:
+                tag = tag_prefix
+            tag_counter += 1
             #tag = f'#DWI_FMAP_AP_{i:03}'
             tag = f'{tag}_{i:03}'
             updates.append({
