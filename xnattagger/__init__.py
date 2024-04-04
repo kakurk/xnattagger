@@ -22,30 +22,30 @@ class Tagger:
 
     def generate_updates(self):
         self.get_scan_listing()
-        if self.target == 'dwi':
+        if 'dwi' in self.target:
             self.updates.update({
                 'dwi': self.dwi(self.scans), # Generate updates for main DWI scan(s)
                 'dwi_PA': self.dwi_PA(self.scans), # Generate updates for PA fieldmap(s)
                 'dwi_AP': self.dwi_AP(self.scans), # Generate updates for AP fieldmap(s)
                 'revpol': self.revpol(self.scans) # Generate updates for revpol scans
             })
-        elif self.target == 't1':
+        if 't1' in self.target:
             self.updates.update({
                 't1w': self.t1w(self.scans),  # Generate updates for T1w scan(s)
                 't1w_move': self.t1w_move(self.scans)  # Generate updates for T1w_MOVE scan(s)
             })
-        elif self.target == 't2':
+        if 't2' in self.target:
             self.updates.update({
                 't2w': self.t2w(self.scans),  # Generate updates for T2w scan(s)
                 't2w_move': self.t2w_move(self.scans)  # Generate updates for T2w_MOVE scan(s)
             })
-        elif self.target == 'bold':
+        if 'bold' in self.target:
             self.updates.update({
                 'bold': self.bold(self.scans),
                 'bold_PA': self.bold_PA(self.scans),
                 'bold_AP': self.bold_AP(self.scans)
                 })
-        elif self.target == 'all':
+        if 'all' in self.target:
             self.updates.update({
                 't1w': self.t1w(self.scans),  # Generate updates for T1w scan(s)
                 't1w_move': self.t1w_move(self.scans),  # Generate updates for T1w_MOVE scan(s)
