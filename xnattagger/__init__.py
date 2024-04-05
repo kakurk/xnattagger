@@ -123,16 +123,23 @@ class Tagger:
 
     def t1w_move(self, scans):
         updates = list()
-        scans, tag = self.filter('t1w_move')
+        scans, tags = self.filter('t1w_move')
         if not scans:
-            return None        
+            return None
+        tag_counter = 0  
         for i,scan in enumerate(scans, start=1):
             sid = scan['id']
             session = scan['session_label']
             series = scan['series_description'].strip()
             note = scan['note'].strip()
             #tag = f'#T1w_MOVE_{i:03}'
-            tag = f'{tag}_{i:03}'
+            tag_prefix = tags[tag_counter]
+            match = re.search(r'\d+$', tag_prefix) ### check if the tag ends in digits. If it does don't mess with it
+            if not match:
+                tag = tag_prefix + f'_{i:03}'
+            else:
+                tag = tag_prefix
+            tag_counter += 1
             updates.append({
                 'project': scan['session_project'],
                 'subject': scan['subject_label'],
@@ -147,16 +154,23 @@ class Tagger:
 
     def t2w(self, scans):
         updates = list()
-        scans, tag = self.filter('t2w')
+        scans, tags = self.filter('t2w')
         if not scans:
-            return None    
+            return None
+        tag_counter = 0
         for i,scan in enumerate(scans, start=1):
             sid = scan['id']
             session = scan['session_label']
             series = scan['series_description'].strip()
             note = scan['note'].strip()
             #tag = f'#T2w_{i:03}'
-            tag = f'{tag}_{i:03}'
+            tag_prefix = tags[tag_counter]
+            match = re.search(r'\d+$', tag_prefix) ### check if the tag ends in digits. If it does don't mess with it
+            if not match:
+                tag = tag_prefix + f'_{i:03}'
+            else:
+                tag = tag_prefix
+            tag_counter += 1
             updates.append({
                 'project': scan['session_project'],
                 'subject': scan['subject_label'],
@@ -171,16 +185,23 @@ class Tagger:
 
     def t2w_move(self, scans):
         updates = list()
-        scans, tag = self.filter('t2w_move')
+        scans, tags = self.filter('t2w_move')
         if not scans:
             return None
+        tag_counter = 0
         for i,scan in enumerate(scans, start=1):
             sid = scan['id']
             session = scan['session_label']
             series = scan['series_description'].strip()
             note = scan['note'].strip()
             #tag = f'#T2w_MOVE_{i:03}'
-            tag = f'{tag}_{i:03}'
+            tag_prefix = tags[tag_counter]
+            match = re.search(r'\d+$', tag_prefix) ### check if the tag ends in digits. If it does don't mess with it
+            if not match:
+                tag = tag_prefix + f'_{i:03}'
+            else:
+                tag = tag_prefix
+            tag_counter += 1
             updates.append({
                 'project': scan['session_project'],
                 'subject': scan['subject_label'],
