@@ -52,22 +52,22 @@ def main():
 
     append_tag_digits = args.append_tag_digits == 'True'
 
-    tagger = Tagger(
+    with Tagger(
         args.xnat_alias,
         configs,
         args.target_modality,
         args.label,
         append_tag_digits,
         cache=args.cache
-    )
-    tagger.generate_updates()
+    ) as tagger:
+        tagger.generate_updates()
 
-    if args.output_file:
-        with open(args.output_file, 'w') as fo:
-            js = json.dumps(tagger.updates, indent=2)
-            fo.write(js)
-    if not args.dry_run:
-        tagger.apply_updates()
+        if args.output_file:
+            with open(args.output_file, 'w') as fo:
+                js = json.dumps(tagger.updates, indent=2)
+                fo.write(js)
+        if not args.dry_run:
+            tagger.apply_updates()
 
 if __name__ == '__main__':
     main()

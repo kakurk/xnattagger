@@ -70,6 +70,13 @@ class Tagger:
         self.updates.clear()
         self.updates.update(filtered)
 
+    def __enter__(self):
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        yaxil.end_session(self.auth)
+        return False
+
     def apply_updates(self):
         self.upsert()
 
