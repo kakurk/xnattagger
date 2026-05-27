@@ -468,7 +468,12 @@ class Tagger:
         logger.info(f'PUT {url} params {params}')
         if confirm:
             input('press enter to execute request')
-        r = requests.put(url, params=params, auth=(self.auth.username, self.auth.password))
+        r = requests.put(
+            url,
+            params=params,
+            auth=yaxil.basicauth(self.auth),
+            cookies=self.auth.cookie
+        )
         if r.status_code != requests.codes.OK:
             raise SetNoteError(f'response not ok for {url}')
 
