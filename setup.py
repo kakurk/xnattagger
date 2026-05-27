@@ -5,7 +5,8 @@ here = os.path.abspath(os.path.dirname(__file__))
 
 requires = [
     'yaxil',
-    'pyaml'
+    'pyaml',
+    'natsort'
 ]
 
 about = dict()
