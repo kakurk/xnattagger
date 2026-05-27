@@ -9,6 +9,7 @@ import logging
 import requests
 from io import BytesIO
 from pprint import pprint
+from natsort import natsorted
 from yaxil.exceptions import NoExperimentsError
 
 logger = logging.getLogger()
@@ -64,11 +65,8 @@ class Tagger:
                 'revpol': self.revpol(self.scans) # Generate updates for revpol scans
             })
 
-        # filter out None values
-
-        filtered = {key: value for key, value in self.updates.items() if value is not None}
-        self.updates.clear()
-        self.updates.update(filtered)
+        # remove all None values
+        self.updates = { key: value for key, value in self.updates.items() if value is not None }
 
     def __enter__(self):
         return self
@@ -498,6 +496,8 @@ class Tagger:
             logger.info(f'cache hit {cachefile}')
             with open(cachefile) as fo:
                 self.scans = json.loads(fo.read())
+        # natsort all scans
+        self.scans = natsorted(self.scans, key=lambda x: x['id'])
 
     def query_scans(self):
         result = list()
