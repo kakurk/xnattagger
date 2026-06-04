@@ -34,7 +34,7 @@ def main():
     parser.add_argument('--config', required=True,
         help='Filters configuration file')
     parser.add_argument('--target-modality', nargs='+', required=True, type=str.lower)
-    parser.add_argument('--append-tag-digits', type=str, default=True)
+    parser.add_argument('--append-tag-digits', type=str, default='True')
     parser.add_argument('--project',
         help='XNAT project')
     parser.add_argument('-c', '--cache', action='store_true',
